@@ -7,8 +7,11 @@ import { FuncionarioController } from './Controllers/funcionarioController';
 import { MovimentacaoService } from './Services/movimentacaoService';
 import { FuncionarioService } from './Services/funcionarioService';
 import { DepartamentoService } from './Services/departamentoService';
+import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot()
+  ],
   controllers: [AppController, MovimentacaoController, DepartamentoController, FuncionarioController],
   providers: [AppService, MovimentacaoService, FuncionarioService, DepartamentoService],
 })
