@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Departamento } from 'src/departamento/model/entity/departamento.entity';
 import { Funcionario } from 'src/funcionario/model/entities/funcionario.entity';
@@ -15,8 +15,11 @@ export class FuncionarioService {
   ){}
 
   create(funcionarioDto: FuncionarioType): Promise<Funcionario> {
+    if(funcionarioDto.nome.length > 200){
+      throw new HttpException('Nome do funcionario não pode exceder 200 caracteres', HttpStatus.BAD_REQUEST);
+    }
     const funcionario = new Funcionario();
-    funcionario.Nome = funcionarioDto.nome
+    funcionario.Nome = funcionarioDto.nome;
     return this.funcionarioRepository.save(funcionario);
   }
 
@@ -24,11 +27,19 @@ export class FuncionarioService {
     return this.funcionarioRepository.find();
   }
 
-  findOne(id: number): Promise<Funcionario> {
-    return this.funcionarioRepository.findOne(id);
+  async findOne(id: number): Promise<Funcionario> {
+    const funcionario = await this.funcionarioRepository.findOne(id);
+    if(!funcionario){
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND)
+    }
+    return funcionario
   }
 
   async remove(id: number): Promise<void> {
+    const funcionario = await this.funcionarioRepository.findOne(id);
+    if(!funcionario){
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND)
+    }
     await this.funcionarioRepository.delete(id);
   }
 }

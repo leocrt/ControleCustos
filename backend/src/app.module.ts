@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DepartamentoModule } from './departamento/departamento.module';
 import { FuncionarioModule } from './funcionario/funcionario.module';
+import { HttpErrorFilter } from './shared/http.error.filter';
 
 @Module({
   imports: [
@@ -18,5 +20,11 @@ import { FuncionarioModule } from './funcionario/funcionario.module';
     FuncionarioModule,
     DepartamentoModule,
   ],
+  providers:[
+    {
+      provide: APP_FILTER,
+      useClass: HttpErrorFilter,
+    },
+  ]
 })
 export class AppModule {}
