@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { MovimentacaoService } from 'src/Services/movimentacaoService';
-import { AppService } from '../Services/app.service';
+import { AppService } from '../../Services/app.service';
 
 @Controller('api/movimentacao')
 export class MovimentacaoController {
