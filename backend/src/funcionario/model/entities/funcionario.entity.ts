@@ -1,6 +1,6 @@
 
 import { Departamento } from 'src/departamento/model/entity/departamento.entity';
-import { Column, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Funcionario {
@@ -8,8 +8,9 @@ export class Funcionario {
   id: number;
 
   @Column("varchar", { length: 200 })
-  Nome: string;
+  nome: string;
 
-  @ManyToOne(type => Departamento, departamento => departamento.funcionarios) 
-   departamento: Departamento
+  @ManyToMany(() => Departamento)
+  @JoinTable() 
+  departamentos: Departamento[];
 }

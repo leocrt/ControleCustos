@@ -7,8 +7,5 @@ export class Departamento {
   id: number;
 
   @Column("varchar", { length: 100 })
-  Nome: string;
-
-  @OneToMany(type => Funcionario, funcionario => funcionario.departamento)
-  funcionarios: Funcionario[]
+  nome: string;
 }

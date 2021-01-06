@@ -12,13 +12,13 @@ services:
     ports:
       - '5432:5432'
   
-  nodejs:
+  cc-backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: cc-backend
     ports:
-      - "3000:3000"
+      - "5000:5000"
     depends_on:
       - db
       

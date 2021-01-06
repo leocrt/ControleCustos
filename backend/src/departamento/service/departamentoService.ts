@@ -13,7 +13,7 @@ export class DepartamentoService {
 
   create(departamentoDto: DepartamentoType): Promise<Departamento> {
     const departamento = new Departamento();
-    departamento.Nome = departamentoDto.nome
+    departamento.nome = departamentoDto.nome
     return this.departamentoRepository.save(departamento);
   }
 

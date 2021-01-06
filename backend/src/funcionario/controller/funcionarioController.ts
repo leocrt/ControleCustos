@@ -28,4 +28,9 @@ export class FuncionarioController {
   remove(@Param('id') id: number): Promise<void> {
     return this.funcionarioService.remove(id);
   }
+
+  @Get('byDepartamento/:id')
+  findFuncionarioByIdDepartamento(@Param('id') id: number): Promise<Funcionario[]> {
+    return this.funcionarioService.findAllFuncionariosByDepartamento(id);
+  }
 }

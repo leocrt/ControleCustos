@@ -1,0 +1,49 @@
+@import '~antd/dist/antd.css';
+
+.title{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input {
+    border-radius: 25px !important;
+    font-size: large !important;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.08);
+}
+
+.form {
+    width: '100%';
+    margin-top: 20px;
+    text-align: start;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    align-self: center;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.main-column {
+    padding-left: 30%;
+    padding-right: 30%;
+    margin-top: 50px;
+}
+
+.card {
+  background: #f8f8f8;
+  align-self: center;
+  margin-top: 60px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.08);
+  background-color: #FFF;
+  width: 380px;
+  height: 400px;
+  min-height: 48px;
+    margin-bottom: -1px;
+    padding: 0 24px;
+    color: rgba(103, 106, 108, 1);
+    font-weight: 500;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 2px 2px 0 0;
+    line-height: 40px; 
+}
