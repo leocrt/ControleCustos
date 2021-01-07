@@ -3,6 +3,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DepartamentoModule } from './departamento/departamento.module';
 import { FuncionarioModule } from './funcionario/funcionario.module';
+import { MovimentacaoModule } from './movimentacao/movimentacao.module';
 import { HttpErrorFilter } from './shared/http.error.filter';
 
 @Module({
@@ -19,6 +20,7 @@ import { HttpErrorFilter } from './shared/http.error.filter';
     }),
     FuncionarioModule,
     DepartamentoModule,
+    MovimentacaoModule
   ],
   providers:[
     {

@@ -1,4 +1,4 @@
-import { ADD_NEW_DEPARTAMENTO, ADD_NEW_FUNCIONARIO, Departamento, Funcionario, GET_All_DEPARTAMENTOS, GET_All_FUNCIONARIOS } from "../../types/models/controleCustoType";
+import { ADD_NEW_DEPARTAMENTO, ADD_NEW_FUNCIONARIO, ADD_NEW_MOVIMENTACAO, Departamento, Funcionario, GET_All_DEPARTAMENTOS, GET_All_FUNCIONARIOS, GET_ALL_MOVIMENTACOES, Movimentacao } from "../../types/models/controleCustoType";
 
 
 export const getAllFuncionarios = () => {
@@ -19,4 +19,13 @@ export const getDepartamentoById = (idDepartamento: number) => {
 
 export const addNewDepartamento = (data: Departamento) => {
     return ({ type: ADD_NEW_DEPARTAMENTO, payload: data });
+}
+
+
+export const getAllMovimentacoes = () => {
+    return ({ type: GET_ALL_MOVIMENTACOES });
+}
+
+export const addNewMovimentacao = (data: Movimentacao) => {
+    return ({ type: ADD_NEW_MOVIMENTACAO, payload: data });
 }

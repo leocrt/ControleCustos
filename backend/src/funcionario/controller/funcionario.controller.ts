@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, UsePipes } from '@nestjs/common';
 import { ValidationPipe } from 'src/shared/validation.pipe';
 import { Funcionario } from '../model/entities/funcionario.entity';
-import { FuncionarioType } from '../model/type/funcionario';
-import { FuncionarioService } from '../services/funcionarioService';
+import { FuncionarioDTO } from '../model/DTO/funcionario.dto';
+import { FuncionarioService } from '../services/funcionario.service';
 
 @Controller('api/funcionario')
 export class FuncionarioController {
@@ -10,7 +10,7 @@ export class FuncionarioController {
 
   @Post()
   @UsePipes(new ValidationPipe)
-  create(@Body() funcionario: FuncionarioType): Promise<Funcionario> {
+  create(@Body() funcionario: FuncionarioDTO): Promise<Funcionario> {
     return this.funcionarioService.create(funcionario);
   }
 

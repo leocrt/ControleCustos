@@ -4,7 +4,7 @@ import { type } from 'os';
 import { Departamento } from 'src/departamento/model/entity/departamento.entity';
 import { Funcionario } from 'src/funcionario/model/entities/funcionario.entity';
 import { Repository } from 'typeorm';
-import { FuncionarioType } from '../model/type/funcionario';
+import { FuncionarioDTO } from '../model/DTO/funcionario.dto';
 
 @Injectable()
 export class FuncionarioService {
@@ -15,7 +15,7 @@ export class FuncionarioService {
     private departamentoRepository: Repository<Departamento>,
   ){}
 
-  async create(funcionarioDto: FuncionarioType): Promise<Funcionario> {
+  async create(funcionarioDto: FuncionarioDTO): Promise<Funcionario> {
     
     if(funcionarioDto.nome.length > 200){
       throw new HttpException('Nome do funcionario não pode exceder 200 caracteres', HttpStatus.BAD_REQUEST);

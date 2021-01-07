@@ -109,10 +109,33 @@ export async function getDepartamentoById(payload: any) {
 }
 
 export async function postFuncionario(payload: any) {
-    debugger;
     return await axios.post(`${URL_API_CC}/api/funcionario/`,payload,{
         headers: {
             'Access-Control-Allow-Origin': '*',
         }, 
     });
+};
+
+export async function getFuncionarios() {
+    return await axios.get(`${URL_API_CC}/api/funcionario`,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+};
+
+export async function postMovimentacao(payload: any) {
+    return await axios.post(`${URL_API_CC}/api/movimentacao/`,payload,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }, 
+    });
 }
+
+export async function getMovimentacoes() {
+    return await axios.get(`${URL_API_CC}/api/movimentacoes`,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+};

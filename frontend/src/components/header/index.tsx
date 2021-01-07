@@ -66,12 +66,8 @@ const AppBar: FC<Props> = () => {
       </Header>
       <Header className="header" style={{ backgroundColor: 'white' }}>
         <Menu mode="horizontal" defaultSelectedKeys={['2']}>
-          <SubMenu key="sub1" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Funcionários" onTitleClick={() => history.push('/relatorios/grupo-compras')}></SubMenu>
-          <SubMenu key="sub2" style={{ fontSize: 17 }} icon={<MedicineBoxOutlined />} title="MarGenericos">
-            <Menu.Item onClick={() => history.push('/margenericos/relatorios')}>
-              Gerenciamento
-              </Menu.Item>
-          </SubMenu>
+          <SubMenu key="sub1" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Funcionários" onTitleClick={() => history.push('/relatorios/funcionarios')}></SubMenu>
+          <SubMenu key="sub2" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Movimentacoes" onTitleClick={() => history.push('/relatorios/movimentacoes')}></SubMenu>
           <SubMenu key="sub3" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Departamentos" onTitleClick={() => history.push('/relatorios/departamentos')}></SubMenu>
         </Menu>
       </Header>

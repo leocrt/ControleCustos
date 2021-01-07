@@ -56,7 +56,7 @@ const RelatorioDepartamentos = () => {
     <Layout>
       <AppBar collapsed />
       <Content style={{ padding: '0 24px', marginTop: '10px', backgroundColor: 'white', marginLeft: 50, marginRight: 50, marginBottom: 20 }}>
-        <h2 className="title-page">Relatório Por Moléculas</h2>
+        <h2 className="title-page">Departamentos</h2>
         <Row style={{ padding: 10 }}>
           <Col span={24}>
             <Input placeholder="Molecula - Descrição Produto - Codigo - Fabricante"/>

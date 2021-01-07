@@ -38,7 +38,6 @@ function CadastroFuncionario(props: any) {
   }
 
   const adicionarNovoFuncionario = () => {
-    debugger;
     let depIds = novoFuncionario.departamentos.map(e =>{ return e.id})
     const funcionario = {
       nome: novoFuncionario.nome,
@@ -55,7 +54,6 @@ function CadastroFuncionario(props: any) {
   } 
 
   const adicionarDepartamento = () => {
-    debugger;
     let updatedDeps = updateDepartamentoArray(departamentoSelected.id, departamentoSelected.nome);
     setNovoFuncionario({...novoFuncionario, departamentos: updatedDeps});
   }
