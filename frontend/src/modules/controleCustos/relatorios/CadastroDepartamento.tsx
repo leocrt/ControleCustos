@@ -2,6 +2,7 @@ import { Button, Col, Drawer, Input, message, Popconfirm, Row, Select } from 'an
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserMatricula } from '../../../services/auth';
+import { addNewDepartamento } from '../../../store/controleCusto/actions';
 import { DeleteMolecula, getCadastroMolecula, getCadastroProdutosMargenerico, getMoleculas, getProdutosIDMoleculas } from '../../../store/Margenericos/actions';
 import { RootState } from '../../../store/store';
 import { CadastroProdutos, moleculas, moleculasProdutosID } from '../../../types/margenericos/margenericosType';
@@ -103,6 +104,11 @@ function CadastroDepartamento(props: any) {
     dispatch(getCadastroMolecula(value));
   }
 
+  function AddDepartamento() {
+    let dep = {nome: "compras"}
+    dispatch(addNewDepartamento(dep));
+  }
+
   function onChange(value: any) {
     getProdutoMolecula(value);
     setLoadingTable(false);
@@ -185,8 +191,8 @@ function CadastroDepartamento(props: any) {
             <Input style={{ width: 530 }} value={moleculaSelected.descricao} onChange={(e) => setMoleculaSelected({ ...moleculaSelected, descricao: e.target.value, usuario: (parseInt(matricula ? matricula : "0"))  })} placeholder="Máx: 100 Caracteres" />
           </Col>
         </Row>
-        <Button type="primary" style={{marginBottom: 16,}}>
-            Adicionar Funcionário
+        <Button onClick={AddDepartamento} type="primary" style={{marginBottom: 16,}}>
+            Adicionar Departamento
         </Button>
         <Row>
           <Col>

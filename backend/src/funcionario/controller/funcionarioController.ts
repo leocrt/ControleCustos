@@ -11,7 +11,7 @@ export class FuncionarioController {
   @Post()
   @UsePipes(new ValidationPipe)
   create(@Body() funcionarioType: FuncionarioType): Promise<Funcionario> {
-    return this.funcionarioService.create(funcionarioType);
+    return this.funcionarioService.create(funcionarioType,[1,2]);
   }
 
   @Get()

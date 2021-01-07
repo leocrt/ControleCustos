@@ -7,14 +7,15 @@ import jwt_decode from 'jwt-decode';
 import relatoriosReducer from './relatorios/reducer';
 import margenericoReducer from './Margenericos/reducer';
 import { TOKEN_EXPIRED } from '../types/usuario/usuarioTypes';
+import controleCustosReducer from './controleCusto/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
     user: userReducer,
     relatorios: relatoriosReducer,
-    margenerico: margenericoReducer
-
+    margenerico: margenericoReducer,
+    controleCustos: controleCustosReducer
 });
 
 const checkTokenExpirationMiddleware = () => (next: any) => (action: any) => {

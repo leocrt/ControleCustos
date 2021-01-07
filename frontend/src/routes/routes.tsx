@@ -1,19 +1,10 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import {BrowserRouter,Route, Switch} from "react-router-dom";
+import { default as MargenericoApuracao, default as MargenericoCadastro, default as MargenericoRelatorios } from '../modules/controleCustos/relatorios';
 import Home from '../modules/home';
-import { isAuthenticated } from '../services/auth';
 import Login from '../modules/login/login';
-import RelatorioGrupoFornecedores from '../modules/relatorios/grupoFornecedores';
 import RelatorioGrupoCompra from '../modules/relatorios/grupoCompras';
-import MargenericoCadastro from '../modules/margenericos/relatorios';
-import MargenericoRelatorios from '../modules/margenericos/relatorios';
-import MargenericoApuracao from '../modules/margenericos/relatorios';
-
+import RelatorioGrupoFornecedores from '../modules/relatorios/grupoFornecedores';
 
 const Routes = () => (
   <BrowserRouter basename="/compras">

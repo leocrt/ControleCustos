@@ -15,18 +15,21 @@ export class FuncionarioService {
     private departamentoRepository: Repository<Departamento>,
   ){}
 
-  async create(funcionarioDto: FuncionarioType): Promise<Funcionario> {
+  async create(funcionarioDto: FuncionarioType, depIds: number[]): Promise<Funcionario> {
     
     if(funcionarioDto.nome.length > 200){
       throw new HttpException('Nome do funcionario não pode exceder 200 caracteres', HttpStatus.BAD_REQUEST);
     }
 
-    const departamento2 = await this.departamentoRepository.findOne(2);
-
-    const listDepartamento = [departamento2];
+    let departamentos: Departamento[]
+    await this.departamentoRepository
+                          .createQueryBuilder("departamento")
+                          .where("departamento.id IN (:...ids)", {ids: depIds})
+                          .getMany().then(result => departamentos = result);
+  
     const funcionario = new Funcionario();
     funcionario.nome = funcionarioDto.nome;
-    funcionario.departamentos = listDepartamento;
+    funcionario.departamentos = departamentos;
 
     await this.funcionarioRepository.save(funcionario);
 
@@ -39,7 +42,6 @@ export class FuncionarioService {
 
   async findOne(id: number): Promise<Funcionario> {
     const funcionario = await this.funcionarioRepository.findOne(id);
-    console.log(funcionario)
     if(!funcionario){
       throw new HttpException('Not found', HttpStatus.NOT_FOUND)
     }

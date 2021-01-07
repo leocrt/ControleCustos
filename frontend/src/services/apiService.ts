@@ -96,3 +96,11 @@ export async function postCadastroMoleculas(payload: any) {
         }
     });
 }
+
+export async function postDepartamento(payload: any) {
+    return await axios.post(`${URL_API_RELATORIOS}/api/departamento`,payload, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+}
