@@ -1,18 +1,16 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
-import createSagaMiddleware from 'redux-saga';
-import { rootSaga } from './rootSaga';
-import userReducer from './autenticacao/reducer';
-import { logout, getToken } from '../services/auth';
 import jwt_decode from 'jwt-decode';
-import relatoriosReducer from './relatorios/reducer';
-import margenericoReducer from './Margenericos/reducer';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { getToken, logout } from '../services/auth';
 import { TOKEN_EXPIRED } from '../types/usuario/usuarioTypes';
 import controleCustosReducer from './controleCusto/reducer';
+import margenericoReducer from './Margenericos/reducer';
+import relatoriosReducer from './relatorios/reducer';
+import { rootSaga } from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
-    user: userReducer,
     relatorios: relatoriosReducer,
     margenerico: margenericoReducer,
     controleCustos: controleCustosReducer

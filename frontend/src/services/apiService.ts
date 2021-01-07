@@ -1,21 +1,8 @@
 import axios from 'axios';
 import { getToken } from './auth';
 
-const URL_IDENTITY = process.env.REACT_APP_URL_IDENTITY_HOMO;
 const URL_API_RELATORIOS = process.env.REACT_APP_URL_API_RELATORIOS;
-
-
-export async function autenticarUsuario(data: any) {
-    return await axios.post(`${URL_IDENTITY}/oauth/connect/token`, data);
-}
-
-export async function buscarDadosUsuario(token: string) {
-    return await axios.get(`${URL_IDENTITY}/oauth/connect/userinfo`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-}
+const URL_API_CC = process.env.REACT_APP_URL_API_CC
 
 export async function getRelatorioAgrupamentoFornecedores() {
     return await axios.get(`${URL_API_RELATORIOS}/api/relatorios/csvfile`, {
@@ -98,9 +85,34 @@ export async function postCadastroMoleculas(payload: any) {
 }
 
 export async function postDepartamento(payload: any) {
-    return await axios.post(`${URL_API_RELATORIOS}/api/departamento`,payload, {
+    return await axios.post(`${URL_API_CC}/api/departamento`,payload, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         }
+    });
+}
+
+export async function getDepartamentos() {
+    return await axios.get(`${URL_API_CC}/api/departamento`,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+}
+
+export async function getDepartamentoById(payload: any) {
+    return await axios.get(`${URL_API_CC}/api/departamento/${payload}`,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+}
+
+export async function postFuncionario(payload: any) {
+    debugger;
+    return await axios.post(`${URL_API_CC}/api/funcionario/`,payload,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }, 
     });
 }

@@ -1,8 +1,7 @@
 import { takeEvery, call, put, takeLatest } from "redux-saga/effects";
 import * as api from '../../services/apiService';
 import { GET_RELATORIO_AGRUPAMENTO_FORNECEDOR, GET_GRUPO_FORNECEDORES, GET_GRUPO_FORNECEDORES_SUCCESS, GET_FORNECEDOR_GRUPO_COMPRA, GET_FORNECEDOR_GRUPO_COMPRA_SUCCESS } from "../../types/relatorios/relatoriosType";
-import { returnMessage, successMessage, errorMessage, downloadFile } from "../../utils/utils";
-import { loadDestroy } from "../../store/autenticacao/mapper";
+import { returnMessage, successMessage, errorMessage, downloadFile, loadDestroy } from "../../utils/utils";
 import { GET_GRUPOS_COMPRA, GET_GRUPOS_COMPRA_SUCCESS } from "../../types/relatorios/relatoriosType";
 
 

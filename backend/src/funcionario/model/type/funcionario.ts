@@ -5,5 +5,5 @@ import { DepartamentoType } from 'src/departamento/model/type/departamento';
 export class FuncionarioType{
     @IsString()
     nome: string;
-    departamentos?: DepartamentoType[] 
+    departamentosIds?: number[] 
 }

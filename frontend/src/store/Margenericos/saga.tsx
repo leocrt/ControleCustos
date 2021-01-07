@@ -1,12 +1,11 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import * as api from '../../services/apiService';
-import { loadDestroy } from "../../store/autenticacao/mapper";
 import {   GET_MOLECULAS_SUCCESS, GET_MOLECULAS, GET_MOLECULAS_PRODUTOS_SUCCESS, GET_MOLECULAS_PRODUTOS,
      GET_MOLECULAS_EXECUCAO,GET_MOLECULAS_EXECUCAO_SUCCESS, GET_MOLECULAS_RELATORIOCSV,
      GET_MOLECULAS_RELATORIOCSV_SUCCESS,GET_MOLECULAS_PRODUTOS_IDMOLECULA,GET_MOLECULAS_PRODUTOS_IDMOLECULA_SUCCESS,
       GET_MOLECULAS_CADASTRO_PRODUTOS, GET_MOLECULAS_CADASTRO_PRODUTOS_SUCCESS,GET_MOLECULAS_CADASTRO_MOLECULA_SUCCESS,GET_MOLECULAS_CADASTRO_MOLECULA ,DELETE_MOLECULAS_SUCCESS,DELETE_MOLECULAS }
       from "../../types/margenericos/margenericosType";
-import { errorMessage, returnMessage } from "../../utils/utils";
+import { errorMessage, loadDestroy, returnMessage } from "../../utils/utils";
 import {  successMessage,  downloadFile } from "../../utils/utils";
  
 

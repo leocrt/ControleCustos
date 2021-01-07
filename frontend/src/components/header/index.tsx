@@ -52,14 +52,9 @@ const AppBar: FC<Props> = () => {
     <>
       <Header className="header">
         <div style={{ justifyContent: 'space-between', display: 'flex', alignItems: 'baseline' }}>
-          <div style={{ color: 'white', fontSize: 15 }}>
-            <img onClick={() => history.push('/home')} className="app-logo" alt="logo" src={logo} />
-            | Compras
-            <Popover content={contentVersion} title="Versão do Sistema">
-              <InfoCircleOutlined style={{ marginLeft: 10 }} />
-            </Popover>
-
-          </div>
+          <a style={{ color: 'white', fontSize: 30 }} onClick={() => history.push('/home')}>
+            Controle de custos
+          </a>
           <div>
             <Popover content={contentAvatar} title="Dados de Usuário" trigger="click">
               <Avatar className="avatar" size="large">
@@ -71,22 +66,13 @@ const AppBar: FC<Props> = () => {
       </Header>
       <Header className="header" style={{ backgroundColor: 'white' }}>
         <Menu mode="horizontal" defaultSelectedKeys={['2']}>
-          <SubMenu key="sub1" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Relatórios">
-            <Menu.Item onClick={() => history.push('/relatorios/grupo-fornecedores')}>
-              Grupo de Fornecedores
-            </Menu.Item>
-            <Menu.Item onClick={() => history.push('/relatorios/grupo-compras')}>
-              Grupo de Compras
-            </Menu.Item>
-          </SubMenu>
+          <SubMenu key="sub1" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Funcionários" onTitleClick={() => history.push('/relatorios/grupo-compras')}></SubMenu>
           <SubMenu key="sub2" style={{ fontSize: 17 }} icon={<MedicineBoxOutlined />} title="MarGenericos">
-            {/* <Menu.Item onClick={() => history.push('/margenericos/relatoriosaaa')}>
-              Cadastro de Moleculas
-            </Menu.Item> */}
             <Menu.Item onClick={() => history.push('/margenericos/relatorios')}>
               Gerenciamento
               </Menu.Item>
           </SubMenu>
+          <SubMenu key="sub3" style={{ fontSize: 17 }} icon={<LineChartOutlined />} title="Departamentos" onTitleClick={() => history.push('/relatorios/departamentos')}></SubMenu>
         </Menu>
       </Header>
     </>

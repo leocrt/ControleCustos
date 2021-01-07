@@ -15,7 +15,7 @@ export class FuncionarioService {
     private departamentoRepository: Repository<Departamento>,
   ){}
 
-  async create(funcionarioDto: FuncionarioType, depIds: number[]): Promise<Funcionario> {
+  async create(funcionarioDto: FuncionarioType): Promise<Funcionario> {
     
     if(funcionarioDto.nome.length > 200){
       throw new HttpException('Nome do funcionario não pode exceder 200 caracteres', HttpStatus.BAD_REQUEST);
@@ -24,7 +24,7 @@ export class FuncionarioService {
     let departamentos: Departamento[]
     await this.departamentoRepository
                           .createQueryBuilder("departamento")
-                          .where("departamento.id IN (:...ids)", {ids: depIds})
+                          .where("departamento.id IN (:...ids)", {ids: funcionarioDto.departamentosIds})
                           .getMany().then(result => departamentos = result);
   
     const funcionario = new Funcionario();

@@ -26,6 +26,9 @@ export const returnMessage = () => {
     return message;
 }
 
+export function loadDestroy() {
+    message.destroy();
+}
 
 export function downloadFile(response: any, fileName: string, extension: string) {
     const url = window.URL.createObjectURL(new Blob([response.data]));
