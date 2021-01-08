@@ -31,14 +31,6 @@ const RelatorioFuncionarios = () => {
       <Content style={{ padding: '0 24px', marginTop: '10px', backgroundColor: 'white', marginLeft: 50, marginRight: 50, marginBottom: 20 }}>
         <h2 className="title-page">Funcionários</h2>
         <Row style={{ padding: 10 }}>
-          <Col span={24}>
-
-            <Input placeholder="Buscar pelo nome do funcionario"/>
-
-          </Col>
-
-        </Row>
-        <Row style={{ padding: 10 }}>
           <Col span={60}>
             <CadastroFuncionario  
               nameButton={"Novo Funcionário"}  
