@@ -33,4 +33,8 @@ export class MovimentacaoController {
     return this.movService.findAllMovimentacoesByFuncionario(id);
   }
 
+  @Get('descricao/:descricao')
+  findMovimentacoesByDescricao(@Param('descricao') descricao: string): Promise<Movimentacao[]> {
+    return this.movService.findAllMovimentacoesByDescricao(descricao);
+  }
 }

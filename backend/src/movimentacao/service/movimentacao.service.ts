@@ -60,8 +60,15 @@ export class MovimentacaoService {
   async findAllMovimentacoesByFuncionario(funcId: number): Promise<Movimentacao[]> {
     const list = await this.movimentacaoRepository
                     .createQueryBuilder("movimentacao")
-                    .innerJoinAndSelect("movimentacao.funcionarios", "funcionario")
-                    .where("funcionario.id = :id", {id: funcId})
+                    .where("movimentacao.funcionarioId = :id", {id: funcId})
+                    .getMany();
+    return list;
+  }
+
+  async findAllMovimentacoesByDescricao(descricao: string): Promise<Movimentacao[]> {
+    const list = await this.movimentacaoRepository
+                    .createQueryBuilder("movimentacao")
+                    .where("movimentacao.descricao like :desc", {desc: `%${descricao}%`})
                     .getMany();
     return list;
   }

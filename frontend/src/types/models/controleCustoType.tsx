@@ -9,6 +9,16 @@ export const ADD_NEW_FUNCIONARIO = 'ADD_NEW_FUNCIONARIO';
 export const GET_ALL_MOVIMENTACOES_SUCCESS = "GET_ALL_MOVIMENTACOES_SUCCESS";
 export const GET_ALL_MOVIMENTACOES = "GET_ALL_MOVIMENTACOES";
 export const ADD_NEW_MOVIMENTACAO = 'ADD_NEW_MOVIMENTACAO';
+export const DELETE_DEPARTAMENTO_BY_ID = 'DELETE_DEPARTAMENTO_BY_ID';
+export const DELETE_DEPARTAMENTO_BY_ID_SUCCESS = 'DELETE_DEPARTAMENTO_BY_ID_SUCCESS';
+export const DELETE_FUNCIONARIO_BY_ID = 'DELETE_FUNCIONARIO_BY_ID';
+export const DELETE_FUNCIONARIO_BY_ID_SUCCESS = 'DELETE_FUNCIONARIO_BY_ID_SUCCESS';
+export const DELETE_MOVIMENTACAO_BY_ID = 'DELETE_MOVIMENTACAO_BY_ID';
+export const DELETE_MOVIMENTACAO_BY_ID_SUCCESS = 'DELETE_MOVIMENTACAO_BY_ID_SUCCESS';
+export const GET_MOVIMENTACAO_BY_ID_FUNCIONARIO = 'GET_MOVIMENTACAO_BY_ID_FUNCIONARIO';
+export const GET_MOVIMENTACAO_BY_ID_FUNCIONARIO_SUCCESS = 'GET_MOVIMENTACAO_BY_ID_FUNCIONARIO_SUCCESS';
+export const GET_MOVIMENTACAO_BY_DESCRICAO = 'GET_MOVIMENTACAO_BY_DESCRICAO';
+export const GET_MOVIMENTACAO_BY_DESCRICAO_SUCCESS = 'GET_MOVIMENTACAO_BY_DESCRICAO_SUCCESS';
 
 export interface ControleCustoState{
     funcionarios: Funcionario[],
@@ -37,7 +47,7 @@ export interface Funcionario{
 export interface GetFuncionarios {
     type: typeof GET_All_FUNCIONARIOS_SUCCESS,
     payload: Funcionario[]
-}
+};
 
 export interface GetDepartamentos {
     type: typeof GET_All_DEPARTAMENTOS_SUCCESS,
@@ -54,4 +64,15 @@ export interface GetDepartamentoById {
     payload: Departamento
 };
 
-export type ControleCustoActions = GetDepartamentos | GetFuncionarios | GetDepartamentoById | GetMovimentacoes;
+export interface GetMovimentacaoByIdFuncionario {
+    type: typeof GET_MOVIMENTACAO_BY_ID_FUNCIONARIO_SUCCESS,
+    payload: Movimentacao[]
+};
+export interface GetMovimentacaoByDescricao{
+    type: typeof GET_MOVIMENTACAO_BY_DESCRICAO_SUCCESS,
+    payload: Movimentacao[]
+};
+
+
+export type ControleCustoActions = GetDepartamentos | GetFuncionarios | GetDepartamentoById |
+                 GetMovimentacoes | GetMovimentacaoByIdFuncionario | GetMovimentacaoByDescricao;

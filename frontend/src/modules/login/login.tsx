@@ -1,12 +1,10 @@
-import React, { useState, useLayoutEffect } from 'react';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Card, Col, Form, Input, Row } from 'antd';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Row, Col, Form, Input, Card, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import logo from '../../assets/logo-paguemenos.png';
 import { useHistory } from 'react-router-dom';
-import './login.css'
-import { isAuthenticated } from '../../services/auth';
 import { errorMessage } from '../../utils/utils';
+import './login.css';
 
 const Login = () => {
 
@@ -21,7 +19,7 @@ const Login = () => {
             errorMessage('Por favor Preencha todos os campos');
             return;
         }
-        if(matricula !== "1234" && senha !== "1234"){
+        if(matricula !== "1234" || senha !== "1234"){
             errorMessage('Usuário ou senha incorreto');
             return; 
         }else{

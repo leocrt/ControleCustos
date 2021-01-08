@@ -3,7 +3,8 @@ import { Badge, Button, Col, Input, Layout, Row, Table } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AppBar from '../../../components/header';
-import { getAllDepartamentos } from '../../../store/controleCusto/actions';
+import { deleteDepartamento } from '../../../services/apiService';
+import { deleteDepartamentoById, getAllDepartamentos } from '../../../store/controleCusto/actions';
 import { RootState } from '../../../store/store';
 import { Departamento } from '../../../types/models/controleCustoType';
 import CadastroDepartamento from './CadastroDepartamento';
@@ -13,15 +14,15 @@ const { Content } = Layout;
 
 const RelatorioDepartamentos = () => {
   const dispatch = useDispatch();
-  const departamentos = useSelector<RootState, Departamento[]>(state => state.controleCustos.funcionarios);
+  const departamentos = useSelector<RootState, Departamento[]>(state => state.controleCustos.departamentos);
 
   useEffect(() => {
     dispatch(getAllDepartamentos());
   }, []);
 
-  useEffect(() => {
-    dispatch(getAllDepartamentos());
-  }, [departamentos]);
+  const deleteDepartamento = (id: any) => {
+    dispatch(deleteDepartamentoById(id));
+  };
 
   return (
     <Layout>
@@ -30,12 +31,15 @@ const RelatorioDepartamentos = () => {
         <h2 className="title-page">Departamentos</h2>
         <Row style={{ padding: 10 }}>
           <Col span={24}>
-            <Input placeholder="Molecula - Descrição Produto - Codigo - Fabricante"/>
+            <Input placeholder="Buscar pelo nome do departamento"/>
           </Col>
         </Row>
         <Row style={{ padding: 10 }}>
           <Col span={60}>
-            <CadastroDepartamento nameButton={"Novo Departamento"} tipo={"Cadastrar Novo Departamento"} icone={<PlusOutlined/>} carregarMolecula={true} />  
+            <CadastroDepartamento 
+              nameButton={"Novo Departamento"} 
+              tipo={"Cadastrar Novo Departamento"} 
+              icone={<PlusOutlined/>}/>  
           </Col>
         </Row>
         <table >
@@ -50,7 +54,7 @@ const RelatorioDepartamentos = () => {
               {departamentos.map((i: Departamento) => (<tr className="ant-table-row ant-table-row-level-0 editable-row">
                 <td className="ant-table-cell">{i.id}</td>
                 <td className="ant-table-cell">{i.nome}</td>
-                <td><Button type="primary" style={{ borderRadius: "4px" }} danger > X </Button></td></tr>))}
+                <td><Button  onClick={() => deleteDepartamento(i.id)} type="primary" style={{ borderRadius: "4px" }} danger > X </Button></td></tr>))}
             </tbody>
           </table>
       </Content>

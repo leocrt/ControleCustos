@@ -8,7 +8,7 @@ export const openNotificationBallon = (title: string, description: string, onClo
         duration: duration,
         onClose: () => onCloseCallback(),
     });
-}
+};
 
 export const successMessage = (text: string) => {
     message.success(text);
@@ -24,11 +24,11 @@ export const warningMessage = (text: string) => {
 
 export const returnMessage = () => {
     return message;
-}
+};
 
 export function loadDestroy() {
     message.destroy();
-}
+};
 
 export function downloadFile(response: any, fileName: string, extension: string) {
     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -38,10 +38,10 @@ export function downloadFile(response: any, fileName: string, extension: string)
     link.setAttribute('download', fileName + '.csv'); //or any other extension
     document.body.appendChild(link);
     link.click();
-}
+};
 
 export function verifyValueInObjectArray(value: any, array: any[], property: string) {
     return array.some(function (element) {
         return element[property] === value;
     });
-}
+};

@@ -1,12 +1,10 @@
-import { Button, Col, Drawer, Input, message, Row, Select } from 'antd';
+import { Button, Col, Drawer, Input, Row, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewFuncionario, addNewMovimentacao, getAllDepartamentos, getAllFuncionarios } from '../../../store/controleCusto/actions';
-import { DeleteMolecula, getCadastroMolecula, getCadastroProdutosMargenerico } from '../../../store/Margenericos/actions';
+import { addNewMovimentacao, getAllFuncionarios } from '../../../store/controleCusto/actions';
 import { RootState } from '../../../store/store';
-import { moleculasProdutosID } from '../../../types/margenericos/margenericosType';
-import { Departamento, Funcionario } from '../../../types/models/controleCustoType';
+import { Funcionario } from '../../../types/models/controleCustoType';
 
 function CadastroMovimentacao(props: any) {
   const [visible, setVisible] = useState(false);
@@ -38,13 +36,17 @@ function CadastroMovimentacao(props: any) {
   }, []);
 
   const adicionarMovimentacao = () => {
-    let valorMontado = parseFloat(valor + "." + centavos)
+    let formatDescricao = descricao
+    let valorMontado = parseFloat(valor + "." + centavos);
+    if(descricao !== ""){
+      formatDescricao = descricao.toLowerCase()
+    }
     const movimentacao = {
-      descricao: descricao,
+      descricao: formatDescricao,
       valor: valorMontado,
       funcionarioId: selectedFuncionario
     }
-    dispatch(addNewMovimentacao(movimentacao))
+    dispatch(addNewMovimentacao(movimentacao));
   }
 
   const { Option } = Select;

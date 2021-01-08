@@ -1,17 +1,13 @@
-import React, { FC } from 'react';
-import logo from '../../assets/logo-pmenos-branca.png';
-import "./styles.css";
-import { Layout, Menu, Popover, Avatar, } from 'antd';
 import {
-  InfoCircleOutlined,
   LineChartOutlined,
-  LogoutOutlined,
-  MedicineBoxOutlined
+  LogoutOutlined
 } from '@ant-design/icons';
-import { logout, getUserName } from '../../services/auth';
-import { useHistory } from 'react-router-dom';
+import { Avatar, Layout, Menu, Popover } from 'antd';
 import SubMenu from 'antd/lib/menu/SubMenu';
+import React, { FC } from 'react';
+import { useHistory } from 'react-router-dom';
 import config from '../../../package.json';
+import "./styles.css";
 
 const { Header } = Layout;
 
@@ -24,7 +20,6 @@ const AppBar: FC<Props> = () => {
   const history = useHistory();
 
   function exit() {
-    logout();
     history.push('/login');
   }
 
@@ -34,11 +29,12 @@ const AppBar: FC<Props> = () => {
     </p>
   );
 
+  const userName = "Usuário Teste"
 
 
   const contentAvatar = () => (
     <p>
-      <strong>Nome:</strong> {getUserName()?.toUpperCase()}<br />
+      <strong>Nome:</strong> {userName}<br />
       <br />
       <div>
         <p id="sair" onClick={exit}>Sair <LogoutOutlined /></p>
@@ -58,7 +54,7 @@ const AppBar: FC<Props> = () => {
           <div>
             <Popover content={contentAvatar} title="Dados de Usuário" trigger="click">
               <Avatar className="avatar" size="large">
-                {getUserName() != null ? getUserName()?.substr(0, 2) : ''}
+                {userName.substr(0, 2)}
               </Avatar>
             </Popover>
           </div>

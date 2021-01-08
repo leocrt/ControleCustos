@@ -1,12 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Input, Layout, Row, Select, Table } from 'antd';
+import { Button, Col, Input, Layout, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { findDOMNode } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AppBar from '../../../components/header';
-import { getAllFuncionarios } from '../../../store/controleCusto/actions';
+import { deleteFuncionarioById, getAllFuncionarios } from '../../../store/controleCusto/actions';
 import { RootState } from '../../../store/store';
-import { moleculasProdutos } from '../../../types/margenericos/margenericosType';
 import { Funcionario } from '../../../types/models/controleCustoType';
 import CadastroFuncionario from './CadastroFuncionario';
 import './styles.css';
@@ -17,18 +15,15 @@ const { Content } = Layout;
 const RelatorioFuncionarios = () => {
 
   const dispatch = useDispatch();
-  //const molecula = useSelector<RootState, moleculas[]>(state => state.margenerico.moleculas);
-  const [loadingTable, setLoadingTable] = useState(true);
   const funcionarios = useSelector<RootState, Funcionario[]>(state => state.controleCustos.funcionarios);
-
 
   useEffect(() => {
     dispatch(getAllFuncionarios());
   }, []);
 
-  useEffect(() => {
-    dispatch(getAllFuncionarios());
-  }, [funcionarios]);
+  const deleteFuncionario = (id: any) => {
+    dispatch(deleteFuncionarioById(id));
+  }
 
   return (
     <Layout>
@@ -45,7 +40,11 @@ const RelatorioFuncionarios = () => {
         </Row>
         <Row style={{ padding: 10 }}>
           <Col span={60}>
-            <CadastroFuncionario  nameButton={"Novo Funcionário"}  tipo={"Cadastrar Novo Funcionário"} icone={<PlusOutlined/>} carregarMolecula={false} />
+            <CadastroFuncionario  
+              nameButton={"Novo Funcionário"}  
+              tipo={"Cadastrar Novo Funcionário"} 
+              icone={<PlusOutlined/>} 
+            />
           </Col>
         </Row>
         <table >
@@ -60,7 +59,7 @@ const RelatorioFuncionarios = () => {
               {funcionarios.map((i: Funcionario) => (<tr className="ant-table-row ant-table-row-level-0 editable-row">
                 <td className="ant-table-cell">{i.id}</td>
                 <td className="ant-table-cell">{i.nome}</td>
-                <td><Button type="primary" style={{ borderRadius: "4px" }} danger > X </Button></td></tr>))}
+                <td><Button onClick={() => deleteFuncionario(i.id)} type="primary" style={{ borderRadius: "4px" }} danger > X </Button></td></tr>))}
             </tbody>
           </table>
         <Row>

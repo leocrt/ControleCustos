@@ -1,7 +1,7 @@
 import { Button, Col, Drawer, Input, message, Row, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewFuncionario, getAllDepartamentos } from '../../../store/controleCusto/actions';
+import { addNewFuncionario, getAllDepartamentos, getAllFuncionarios } from '../../../store/controleCusto/actions';
 import { RootState } from '../../../store/store';
 import { Departamento, Funcionario } from '../../../types/models/controleCustoType';
 
@@ -36,19 +36,25 @@ function CadastroFuncionario(props: any) {
   }
 
   const adicionarNovoFuncionario = () => {
-    let depIds = novoFuncionario.departamentos.map(e =>{ return e.id})
+    let depIds = novoFuncionario.departamentos.map(e =>{ return e.id});
+    let filteredDeps = depIds.filter(e => e !== 0);
+    if (filteredDeps.length === 0) {
+      message.error("Favor selecionar pelo menos um departamento!")
+      return;
+    }
     const funcionario = {
       nome: novoFuncionario.nome,
       departamentosIds: depIds
     };
     dispatch(addNewFuncionario(funcionario));
+    dispatch(getAllFuncionarios())
   }
 
   const updateDepartamentoArray = (id: number, nome: string): Departamento[] => {
-    let departamentos = [...novoFuncionario.departamentos]
-    let filteredDeps = departamentos.filter(c => c.id !== 0)
-    filteredDeps.push({id: id, nome: nome})
-    return filteredDeps
+    let departamentos = [...novoFuncionario.departamentos];
+    let filteredDeps = departamentos.filter(c => c.id !== 0);
+    filteredDeps.push({id: id, nome: nome});
+    return filteredDeps;
   } 
 
   const adicionarDepartamento = () => {
