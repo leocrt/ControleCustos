@@ -2,9 +2,7 @@ import { Button, Col, Drawer, Input, message, Row, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewFuncionario, getAllDepartamentos } from '../../../store/controleCusto/actions';
-import { DeleteMolecula, getCadastroMolecula, getCadastroProdutosMargenerico } from '../../../store/Margenericos/actions';
 import { RootState } from '../../../store/store';
-import { moleculasProdutosID } from '../../../types/margenericos/margenericosType';
 import { Departamento, Funcionario } from '../../../types/models/controleCustoType';
 
 function CadastroFuncionario(props: any) {

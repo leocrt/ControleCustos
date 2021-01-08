@@ -15,7 +15,7 @@ const controleCustosReducer = (state = initialState, action: types.ControleCusto
             state.departamentos = action.payload;
             return Object.assign({}, state);
         case types.GET_ALL_MOVIMENTACOES_SUCCESS:
-            state.departamentos = action.payload;
+            state.movimentacoes = action.payload;
             return Object.assign({}, state);
         default:
             return state;

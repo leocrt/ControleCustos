@@ -7,7 +7,7 @@ import Home from '../modules/home';
 import Login from '../modules/login/login';
 
 const Routes = () => (
-  <BrowserRouter basename="/compras">
+  <BrowserRouter basename="/controle-custos">
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/login" component={Login} />

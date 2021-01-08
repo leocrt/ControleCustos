@@ -13,7 +13,7 @@ export const ADD_NEW_MOVIMENTACAO = 'ADD_NEW_MOVIMENTACAO';
 export interface ControleCustoState{
     funcionarios: Funcionario[],
     departamentos: Departamento[],
-    movimentacoes: []
+    movimentacoes: Movimentacao[]
 };
 
 export interface Departamento{
@@ -46,7 +46,7 @@ export interface GetDepartamentos {
 
 export interface GetMovimentacoes {
     type: typeof GET_ALL_MOVIMENTACOES_SUCCESS,
-    payload: Departamento[]
+    payload: Movimentacao[]
 };
 
 export interface GetDepartamentoById {

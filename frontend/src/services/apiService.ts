@@ -133,7 +133,7 @@ export async function postMovimentacao(payload: any) {
 }
 
 export async function getMovimentacoes() {
-    return await axios.get(`${URL_API_CC}/api/movimentacoes`,{
+    return await axios.get(`${URL_API_CC}/api/movimentacao/`,{
         headers: {
             'Access-Control-Allow-Origin': '*',
         }

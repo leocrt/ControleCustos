@@ -33,4 +33,8 @@ export class FuncionarioController {
   findFuncionarioByIdDepartamento(@Param('id') id: number): Promise<Funcionario[]> {
     return this.funcionarioService.findAllFuncionariosByDepartamento(id);
   }
+  @Get('byDepartamento/')
+  findAllFuncionariosAndDepartamentos(): Promise<Funcionario[]> {
+    return this.funcionarioService.findAllFuncionariosAndDepartamentos();
+  }
 }

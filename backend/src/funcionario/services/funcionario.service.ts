@@ -64,4 +64,12 @@ export class FuncionarioService {
                     .getMany();
     return list;
   }
+
+  async findAllFuncionariosAndDepartamentos(): Promise<Funcionario[]> {
+    const list = await this.funcionarioRepository
+    .createQueryBuilder("funcionario")
+    .innerJoinAndSelect("funcionario.departamentos", "departamento")
+    .getMany();
+return list;
+  }
 }

@@ -109,6 +109,7 @@ function* getFuncionarios() {
 }
 
 function* getMovimentacoes() {
+    debugger;
     try {
         const loading = returnMessage();
         loading.loading('Processando');

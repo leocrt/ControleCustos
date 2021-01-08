@@ -1,56 +1,27 @@
 import { DownloadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Badge, Button, Col, Input, Layout, Row, Table } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AppBar from '../../../components/header';
+import { getAllDepartamentos } from '../../../store/controleCusto/actions';
+import { RootState } from '../../../store/store';
+import { Departamento } from '../../../types/models/controleCustoType';
 import CadastroDepartamento from './CadastroDepartamento';
 import './styles.css';
 
 const { Content } = Layout;
 
 const RelatorioDepartamentos = () => {
-  const columnsTable = [
-    {
-      title: 'Molecula',
-      dataIndex: 'molecula',
-      key: 'molecula',
-      width: '20%',
-    },
-    {
-      title: 'Codigo',
-      dataIndex: 'codigo',
-      width: '8%',
-    },
-    {
-      title: 'Descrição',
-      dataIndex: 'descricao',
-    },
-    {
-      title: 'Fabricante',
-      dataIndex: 'fabricante',
-    },
-    {
-      title: 'Fornecedor',
-      dataIndex: 'fornecedor',
-    },
-    {
-      title: 'Peso',
-      dataIndex: 'peso',
-      width: '5%',
-    },
-    {
-      title: '% Atingido',
-      dataIndex: 'percentualAtingido',
-      width: '12%',
-    },
-    {
-      title: 'Quantidade',
-      dataIndex: 'quantidade',
-    },
-    {
-      title: 'Fora Mix',
-      dataIndex: 'foraMix',
-    },         
-  ];
+  const dispatch = useDispatch();
+  const departamentos = useSelector<RootState, Departamento[]>(state => state.controleCustos.funcionarios);
+
+  useEffect(() => {
+    dispatch(getAllDepartamentos());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAllDepartamentos());
+  }, [departamentos]);
 
   return (
     <Layout>
@@ -64,26 +35,24 @@ const RelatorioDepartamentos = () => {
         </Row>
         <Row style={{ padding: 10 }}>
           <Col span={60}>
-            <CadastroDepartamento nameButton={"Novo Departamento"} tipo={"Cadastrar Novo Departamento"} icone={<PlusOutlined/>} carregarMolecula={true} />
-            <Button type="primary" icon={<DownloadOutlined />}>
-              Gerar CSV
-          </Button>
+            <CadastroDepartamento nameButton={"Novo Departamento"} tipo={"Cadastrar Novo Departamento"} icone={<PlusOutlined/>} carregarMolecula={true} />  
           </Col>
         </Row>
-        <Table
-          columns={columnsTable}
-          rowClassName={(record, index) => ( record.percentualAtingido < record.peso && record.foraMix == "Participante" ? "red" : record.percentualAtingido >= 0 && record.foraMix == "Participante" ? "green" :"")}
-        />
-        <Row>
-        {/* <UpCircleTwoTone  twoToneColor="#3CB371"/> */}
-        <Badge status="success" />
-         <h3  style={{ paddingLeft: 10 }} >Produtos Dentro do Mix que a Meta Foi Atingida</h3>
-        </Row>
-        <Row>
-        {/* <DownCircleTwoTone twoToneColor="#FF4500"/> */}
-        <Badge status="error" />
-         <h3 style={{ paddingLeft: 10 }}>Produtos Dentro do Mix que a Meta Não Foi Atingida</h3>
-        </Row>
+        <table >
+            <thead className="ant-table-thead">
+              <tr>
+                <th id='codigo' className="ant-table-cell" style={{ width: "20%" }} >Id</th>
+                <th id='codigo' className="ant-table-cell" style={{ width: "70%" }} >Nome</th>
+                <th className="ant-table-cell" style={{ width: "30%" }} >Excluir</th>
+              </tr>
+            </thead>
+            <tbody className="ant-table-tbody">
+              {departamentos.map((i: Departamento) => (<tr className="ant-table-row ant-table-row-level-0 editable-row">
+                <td className="ant-table-cell">{i.id}</td>
+                <td className="ant-table-cell">{i.nome}</td>
+                <td><Button type="primary" style={{ borderRadius: "4px" }} danger > X </Button></td></tr>))}
+            </tbody>
+          </table>
       </Content>
     </Layout>
   );
